@@ -1,0 +1,27 @@
+# API 密钥（含敏感信息）
+config/api-key.json
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# 输出文件
+output/*.png
+output/*.txt
+
+# 输入 PDF（可能为版权材料）
+input/*.pdf
+
+# 系统文件
+.DS_Store
+Thumbs.db
