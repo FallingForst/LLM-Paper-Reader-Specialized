@@ -1,0 +1,61 @@
+{
+  "_description": "LLM 调用参数与合并策略配置（提示词请见 prompt.json）",
+
+  "llm": {
+    "model": "deepseek-v4-pro",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0.1,
+    "max_tokens": 4000,
+    "max_retries": 2,
+    "retry_delays_seconds": [1, 2],
+    "reasoning_effort": "high",
+    "extra_body": {"thinking": {"type": "enabled"}}
+  },
+
+  "merge_strategy": {
+    "core_goal": {
+      "method": "deep_merge_first_non_empty",
+      "description": "对象字段级别合并：每个子字段以最先出现的非空值为准",
+      "sub_fields": ["definition", "current_baseline", "target_metric"]
+    },
+    "three_layers": {
+      "method": "deduplicate_by_layer_merge_characteristics",
+      "description": "按 layer 字段去重，合并同一 layer 的 key_characteristics 并去重",
+      "dedup_key": "layer",
+      "merge_field": "key_characteristics"
+    },
+    "timeline": {
+      "method": "merge_arrays_deduplicate",
+      "description": "合并 short_term_2_5_years 和 long_term_6_10_years 各自的数组并去重",
+      "sub_fields": ["short_term_2_5_years", "long_term_6_10_years"]
+    }
+  },
+
+  "output_schema": {
+    "core_goal": {
+      "type": "object",
+      "default": { "definition": "", "current_baseline": "", "target_metric": "" },
+      "properties": {
+        "definition": { "type": "string", "default": "" },
+        "current_baseline": { "type": "string", "default": "" },
+        "target_metric": { "type": "string", "default": "" }
+      }
+    },
+    "three_layers": {
+      "type": "array",
+      "items": {
+        "layer": "string",
+        "key_characteristics": ["string"]
+      },
+      "default": []
+    },
+    "timeline": {
+      "type": "object",
+      "default": { "short_term_2_5_years": [], "long_term_6_10_years": [] },
+      "properties": {
+        "short_term_2_5_years": { "type": "array", "items": "string", "default": [] },
+        "long_term_6_10_years": { "type": "array", "items": "string", "default": [] }
+      }
+    }
+  }
+}

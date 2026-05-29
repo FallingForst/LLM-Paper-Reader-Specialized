@@ -1,0 +1,52 @@
+{
+  "core_goal": {
+    "definition": "Exponential gains in intelligence per joule, defined as meaningful capability, insight, or task performance per unit of energy.",
+    "current_baseline": "Training a single frontier model consumes energy comparable to hundreds of households, and AI datacenters increasingly rival nations in power demand.",
+    "target_metric": "A 10-year roadmap for AI+HW co-design and co-development spanning algorithms, architectures, systems, and sustainability to achieve exponential gains in intelligence per joule."
+  },
+  "three_layers": [
+    {
+      "layer": "Hardware",
+      "key_characteristics": [
+        "Hardware layer is foundation for AI efficiency, demanding radical innovation with memory-centric designs, 3D stacking, compute-in-memory, photonic interconnects, and heterogeneous coordination, driven by AI-enhanced electronic design automation."
+      ]
+    },
+    {
+      "layer": "Algorithm",
+      "key_characteristics": [
+        "AI must become hardware-aware while hardware becomes AI-adaptive, closing the innovation gap via AI-in-the-loop design automation, hardware-aware training, and self-evolving stacks that continuously optimize efficiency."
+      ]
+    },
+    {
+      "layer": "Application",
+      "key_characteristics": [
+        "AI systems must ultimately serve human and planetary needs while remaining computationally sustainable; real-world applications demand constraints on energy, latency, robustness, interpretability, and cost, which drive new algorithmic paradigms and hardware targets."
+      ]
+    }
+  ],
+  "timeline": {
+    "short_term_2_5_years": [
+      "Domain-specific AI accelerators with native support for quantization and sparsity enabling substantial performance-per-watt gains.",
+      "Heterogeneous compute nodes combining CPU, GPU, and NPU to map different AI pipeline components to the most suitable hardware, improving utilization and reducing system-level inefficiencies.",
+      "High-bandwidth memory (HBM) integration with wider interfaces and tighter coupling to compute to address memory bandwidth and data movement bottlenecks.",
+      "3D packaging and chiplet-based architectures enabling scalable composition of compute, memory, and accelerators with improved yield and flexibility.",
+      "Hardware-aware compilers, auto-tuners, and optimized operator libraries to close the gap between peak capability and achieved utilization.",
+      "Standardization across APIs, IRs, model formats, and kernel libraries to reduce fragmentation and ensure portability across heterogeneous AI systems.",
+      "Edge and on-device AI with small, efficient models for low-latency, privacy-preserving, energy-efficient inference at scale.",
+      "Hybrid unified memory hierarchies combining fast DRAM with slower NVRAM/flash for tiered access patterns and persistent state across CPUs, GPUs, and accelerators."
+    ],
+    "long_term_6_10_years": [
+      "Compute-in-memory and analog computing colocate computation and storage, embracing approximate and robust algorithms for orders-of-magnitude efficiency gains.",
+      "Dense 3D integration and advanced packaging collapse distance between logic and memory, enabling fine-grained bandwidth-rich communication for new compute-memory dataflows.",
+      "Photonic and optoelectronic interconnects provide near distance-independent bandwidth and latency, removing electrical signaling bottlenecks for large-scale AI systems.",
+      "Photonic computing elements may enable new energy-efficient primitives for linear algebra and signal processing, expanding the hardware-accelerated operator set.",
+      "Quantum-accelerated AI via hybrid quantum–classical systems for optimization, sampling, and simulation tasks hard for classical scaling.",
+      "Photonic and optical interconnects within and between chips for orders-of-magnitude improvements in bandwidth density and energy efficiency.",
+      "Photonic accelerators and analog–optical hybrid computing for energy-efficient linear algebra and signal processing primitives in specialized AI workloads.",
+      "Broader adoption of compute-in-memory and analog computing to reduce data movement by colocating computation with storage, using algorithmic robustness to manage noise.",
+      "Dense 3D heterogeneous integration of compute, memory, and logic enabling new dataflows and higher system-level efficiency for emerging physical AI workloads.",
+      "New materials and transistor technologies beyond conventional CMOS, if manufacturable at scale, to overcome limits in power, speed, and integration density.",
+      "Ultra-scalable distributed AI systems with adaptive coherence and orchestration across cloud, edge, and device layers to support coordinated operation of intelligent agents."
+    ]
+  }
+}
