@@ -19,8 +19,9 @@ env/
 output/*
 !output/.gitkeep
 
-# 输入 PDF（可能为版权材料）
-input/*.pdf
+# 输入文件（目录保留，内部文件忽略，可能为版权材料）
+input/*
+!input/.gitkeep
 
 # 系统文件
 .DS_Store
