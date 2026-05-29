@@ -22,7 +22,6 @@ input.pdf  →  PDF 转文本  →  文本分块  →  LLM 结构化提取  → 
 ```
 .
 ├── generate_briefing.py      # 主控脚本（一键运行流水线）
-├── test.py                   # 测试脚本（使用已有 JSON 生成信息图）
 ├── requirements.txt          # Python 依赖清单
 ├── .gitignore                # Git 忽略规则
 ├── config/
@@ -133,43 +132,6 @@ python generate_briefing.py
 └──────────────────────────────────────────────────┘
 ```
 
-## 测试
-
-无需 API 密钥即可测试信息图生成：
-
-```bash
-python test.py
-```
-
-使用 `output/extracted_data.json` 生成 `output/test_briefing.png`。
-
-## 模块 API
-
-### `pdf_to_text.transfer_to_text(file_path, output_path)`
-
-将 PDF 转换为 UTF-8 纯文本，段落间以空行分隔。**支持智能分段**：
-- 编号识别（`1.` `(1)` `I.` `一、` 等）
-- 项目符号识别（`•` `–` `▪` 等）
-- 缩进感知（≥4 空格缩进突变触发新段落）
-- 全大写短标题识别
-- 自动过滤页眉和孤立页码
-
-### `chunck.load_and_chunk(file_path, max_chunk_size=2000)`
-
-读取纯文本并按段落/句子边界分块，返回 `list[str]`。
-
-### `llm_extract.extract_info_via_llm(chunks, api_key, config_path, prompt_path)`
-
-对每个文本块调用 LLM 提取结构化信息，支持自动重试与多块结果合并去重。
-
-### `llm_extract.process_paper(pdf_path, api_key, ...)`
-
-端到端便捷函数：PDF → 文本 → 分块 → LLM 提取，一步完成。
-
-### `infographic.generate_png(data, output_path)`
-
-将结构化 JSON 渲染为 16×10 英寸、150 DPI 的 PNG 信息图（3 卡片各 6 条特征 + 双栏时间轴各 8 条趋势）。
-
 ## 许可
 
-本项目仅供学习和研究使用。
+本项目基于 [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html) 许可。

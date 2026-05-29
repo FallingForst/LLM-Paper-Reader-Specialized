@@ -15,9 +15,9 @@ env/
 .vscode/
 .idea/
 
-# 输出文件
-output/*.png
-output/*.txt
+# 输出文件（目录保留，内部文件忽略）
+output/*
+!output/.gitkeep
 
 # 输入 PDF（可能为版权材料）
 input/*.pdf
