@@ -13,7 +13,7 @@ input.pdf  →  PDF 转文本  →  文本分块  →  LLM 结构化提取  → 
 | 步骤 | 模块 | 功能 |
 |------|------|------|
 | 1 | `pdf_to_text` | 使用 pdfplumber 提取 PDF 文本，智能识别段落边界 |
-| 2 | `chunck` | 将纯文本按段落拆分为适合 LLM 处理的文本块（~2000 字符/块） |
+| 2 | `chunk` | 将纯文本按段落拆分为适合 LLM 处理的文本块（~2000 字符/块） |
 | 3 | `llm_extract` | 调用 DeepSeek API 提取 core_goal、three_layers、timeline 结构化数据 |
 | 4 | `infographic` | 使用 matplotlib 渲染包含三卡片 + 时间轴的 PNG 信息图 |
 
@@ -31,7 +31,7 @@ input.pdf  →  PDF 转文本  →  文本分块  →  LLM 结构化提取  → 
 ├── function/
 │   ├── __init__.py           # 包初始化（统一导出）
 │   ├── pdf_to_text.py        # PDF → 纯文本（智能分段：编号/缩进/标题识别）
-│   ├── chunck.py             # 文本分块
+│   ├── chunk.py             # 文本分块
 │   ├── llm_extract.py        # LLM 结构化信息提取（含重试、合并、端到端接口）
 │   └── infographic.py        # 信息图生成（matplotlib）
 ├── input/                    # 待处理的 PDF 文件（input.pdf）

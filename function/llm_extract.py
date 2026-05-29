@@ -360,6 +360,10 @@ def process_paper(
     api_key: str,
     txt_path: str | None = None,
     max_chunk_size: int = 2000,
+    chunk_overlap: int = 0,
+    min_chunk_size: int = 0,
+    min_paragraph_size: int = 50,
+    preserve_sections: bool = True,
     config_path: str | Path | None = None,
     prompt_path: str | Path | None = None,
 ) -> dict[str, Any]:
@@ -369,7 +373,11 @@ def process_paper(
         pdf_path: 输入的 PDF 论文路径。
         api_key: API 密钥。
         txt_path: 中间文本文件保存路径（可选，默认自动生成）。
-        max_chunk_size: 分块大小。
+        max_chunk_size: 分块最大字符数，默认 2000。
+        chunk_overlap: 相邻 chunk 重叠字符数，0=不重叠。推荐 100~200。
+        min_chunk_size: 最小 chunk 大小，过短的末尾 chunk 会被合并。
+        min_paragraph_size: 短段落合并阈值（字符数），默认 50。
+        preserve_sections: 是否在节标题处优先切分，默认 True。
         config_path: LLM 参数配置文件路径，为 None 时使用默认 config.json。
         prompt_path: 提示词配置文件路径，为 None 时使用默认 prompt.json。
 
@@ -377,7 +385,7 @@ def process_paper(
         合并后的结构化信息字典。
     """
     from .pdf_to_text import transfer_to_text
-    from .chunck import load_and_chunk
+    from .chunk import load_and_chunk
 
     # 1. PDF → 文本
     if txt_path is None:
@@ -386,7 +394,14 @@ def process_paper(
     print(f"PDF 已转换为文本: {txt_path}")
 
     # 2. 文本 → 分块
-    chunks = load_and_chunk(txt_path, max_chunk_size=max_chunk_size)
+    chunks = load_and_chunk(
+        txt_path,
+        max_chunk_size=max_chunk_size,
+        chunk_overlap=chunk_overlap,
+        min_chunk_size=min_chunk_size,
+        min_paragraph_size=min_paragraph_size,
+        preserve_sections=preserve_sections,
+    )
     print(f"文本已分为 {len(chunks)} 个 chunk")
 
     # 3. LLM 提取（参数来自 config.json，提示词来自 prompt.json）

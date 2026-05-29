@@ -2,7 +2,7 @@
 PDF 转文本工具
 
 提供 transfer_to_text 函数，将 PDF 文档转换为纯文本文件，
-输出格式与 chunck.load_and_chunk 兼容（段落间以空行分隔）。
+输出格式与 chunk.load_and_chunk 兼容（段落间以空行分隔）。
 """
 
 import re

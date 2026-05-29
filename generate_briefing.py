@@ -24,7 +24,7 @@ if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
 
 from function.pdf_to_text import transfer_to_text
-from function.chunck import load_and_chunk
+from function.chunk import load_and_chunk
 from function.llm_extract import extract_info_via_llm
 from function.infographic import generate_png
 
@@ -123,9 +123,14 @@ def main() -> None:
     logger.info("─" * 40)
     logger.info("步骤 2/4: 文本分块")
     logger.info("  输入: %s", TXT_OUTPUT)
-    logger.info("  max_chunk_size: 2000")
+    logger.info("  max_chunk_size: 2000, chunk_overlap: 200")
     try:
-        chunks = load_and_chunk(str(TXT_OUTPUT), max_chunk_size=2000)
+        chunks = load_and_chunk(
+            str(TXT_OUTPUT),
+            max_chunk_size=2000,
+            chunk_overlap=200,
+            preserve_sections=True,
+        )
         logger.info("✓ 分块完成，共 %d 个 chunk", len(chunks))
     except Exception as e:
         logger.exception("文本分块失败: %s", e)

@@ -5,7 +5,7 @@
 #   from function.llm_extract import process_paper
 
 from .pdf_to_text import transfer_to_text
-from .chunck import load_and_chunk
+from .chunk import load_and_chunk
 from .llm_extract import extract_info_via_llm, process_paper
 from .infographic import generate_png
 
